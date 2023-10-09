@@ -21,7 +21,7 @@ public class Restaurant {
     private String location;
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<TableInfo> tableInfoList = new ArrayList<>();
+    private List<Table> tableInfoList = new ArrayList<>();
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reservation> reservations = new ArrayList<>();
@@ -32,4 +32,4 @@ public class Restaurant {
     }
 
 }
-}
+
