@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div class="container">
+  <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>식당이름</th>
+        <th>식당위치</th>
+        <th>혼잡도</th>
+        <th>예약/대기</th>
+        <th>테이블조회(사용X 정리해야함)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="restaurant : ${restaurantList}">
+        <td th:text="${restaurant.name}"></td>
+        <td th:text="${restaurant.location}"></td>
+        <td>
+          <span th:if="${restaurantStatuses.get(restaurant.id)} == '원활'" style="color: green;">원활</span>
+          <span th:if="${restaurantStatuses.get(restaurant.id)} == '혼잡'" style="color: orange;">혼잡</span>
+          <span th:if="${restaurantStatuses.get(restaurant.id)} == '거의 만석'" style="color: red;">거의 만석</span>
+          <span th:if="${restaurantStatuses.get(restaurant.id)} == '자리 없음'" style="color: grey;">자리 없음</span>
+        </td>
+        <td>
+          <button th:if="${!restaurantFullStatus.get(restaurant.id)}" class="btn btn-primary">바로 예약</button>
+          <button th:if="${restaurantFullStatus.get(restaurant.id)}" class="btn btn-secondary">대기 예약</button>
+        </td>
+        <td>
+          <a href="#" th:href="@{/restaurants/{restaurantsid}/button(restaurantsid=${restaurant.id})}"
+             class="btn btn-info" role="button">테이블 조회</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>

@@ -1,11 +1,15 @@
 package TableSeat.TableSeat.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
+@Getter
+@Setter
 public class Table {
     @Id
     @Column(name = "table_id", insertable = true, updatable = true)
@@ -28,6 +32,8 @@ public class Table {
     @Column(name = "remain_time")
     private int remainTime;
 
+    @OneToMany(mappedBy = "table")
+    private List<Order> orders;
 
 
 

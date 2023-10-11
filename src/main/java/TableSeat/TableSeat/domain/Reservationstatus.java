@@ -1,5 +1,8 @@
 package TableSeat.TableSeat.domain;
 
 public enum Reservationstatus {
-    RESERVED, NOTRESERVED
+    NOT_RESERVED,
+    RESERVED,
+    WAITING,
+
 }

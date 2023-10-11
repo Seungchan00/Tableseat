@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+  <div th:replace="~{fragments/bodyHeader :: bodyHeader}"></div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>식당이름</th>
+      <th>주소</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${restaurants == null}">
+      <td colspan="3">No results found.</td>
+    </tr>
+    <tr th:each="restaurant : ${restaurants}" th:if="${restaurants != null}">
+      <td th:text="${restaurant.name}"></td>
+      <td th:text="${restaurant.location}"></td>
+      <td>
+        <a href="#" th:href="@{/restaurants/{restaurantsid}/button(restaurantsid=${restaurant.id})}"
+           class="btn btn-primary" role="button">테이블 조회</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div th:replace="fragments/footer :: footer"/>
+</div>
+</body>
+</html>
